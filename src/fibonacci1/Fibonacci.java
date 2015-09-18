@@ -3,8 +3,6 @@ package fibonacci1;
 import java.util.ArrayList;
 
 public class Fibonacci {
-	// Store all previously computed Fibonacci numbers.
-	static ArrayList<Long> arrFib;
 	/**
 	 * Return the n<sup>th</sup> Fibonacci number. The n<sup>th</sup> Fibonacci
 	 * number is defined as follows:<br />
@@ -18,11 +16,6 @@ public class Fibonacci {
 	 * @return the n<sup>th</sup> Fibonacci number
 	 */
 	public static long getFibonacci(int n) {
-		// The static approach		
-		for (int i = arrFib.size()-1; i < n; i++) {
-			arrFib.add(arrFib.get(arrFib.size() - 1 ) + arrFib.get(arrFib.size() - 2));
-		}
-		/*
 		// Compute the Fibonacci Sequence from the bottom up.
 		long[] arrFibTriad = new long[3];
 		arrFibTriad[0] = 0; arrFibTriad[1] = 1;
@@ -30,7 +23,7 @@ public class Fibonacci {
 		 * Form the third number by adding the first two,
 		 * then shift all numbers down (move to the next
 		 * set of three numbers).
-		 *
+		 */
 		for (int i = 1; i < n; i++) {
 			arrFibTriad[2] = arrFibTriad[0] + arrFibTriad[1];
 			arrFibTriad[0] = arrFibTriad[1];
@@ -39,8 +32,7 @@ public class Fibonacci {
 		
 		if (n == 0) return 0;
 		else if (n == 1) return 1;
-		return arrFibTriad[2]; // Return the nth Fibonacci number*/
-		return arrFib.get(n);
+		return arrFibTriad[2]; // Return the nth Fibonacci number
 	}
 
 	/**
@@ -52,17 +44,9 @@ public class Fibonacci {
 	 *            This method does not use any arguments
 	 */
 	public static void main(String[] args) {
-		// One should not have to modify this method other than to change the
-		// value for M.
-
-		int M = 60;
+		int M = 60; // M value unchanged; appropriate range selected during data analysis.
 		long fibN; // to hold a Fibonacci number
 		long startTime, endTime; // for timing the execution of the method
-		
-		// Set the initial values in the static fibonacci sequence
-		arrFib = new ArrayList<Long>(100);
-		arrFib.add((long)0);
-		arrFib.add((long)1);
 		
 		fibN = getFibonacci(0); // initial call to method to remove set up time.
 		
@@ -70,19 +54,10 @@ public class Fibonacci {
 			startTime = System.nanoTime();
 			fibN = getFibonacci(n);
 			endTime = System.nanoTime();
-			/*System.out.println("Fibonacci(" + n + ") is " + fibN + ", and the computation took " + (endTime - startTime)
-					+ " nanoseconds");*/
+			System.out.println("Fibonacci(" + n + ") is " + fibN + ", and the computation took " + (endTime - startTime)
+					+ " nanoseconds");
 			// A different print format that's easier to process but less readable.
-			System.out.println(n + "," + fibN + "," + (endTime - startTime));
-
-			// Note the use of the System.nanoTime() method. Find out more about
-			// this and related methods. These methods are built-in with Java.
-
-			// Ideally, to determine the running time of a method we should take
-			// many samples and then compute the mean and other related
-			// statistics. We are keeping things quite simple and possibly
-			// inaccurate for now.
-
+			//System.out.println(n + "," + fibN + "," + (endTime - startTime));
 		}
 	}
 
