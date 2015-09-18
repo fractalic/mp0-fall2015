@@ -1,6 +1,7 @@
 package fibonacci2;
 
 import java.util.Scanner;
+import fibonacci1.Fibonacci;
 
 public class CheckFib {
 
@@ -12,7 +13,16 @@ public class CheckFib {
 	 * @return true if n is a Fibonacci number otherwise return false.
 	 */
 	public static boolean isFib( long n ) {
-		// TODO: Implement this method
+		long fibCandidate = 0;
+		int fibIndex = 0;
+		do {
+			fibCandidate = fibonacci1.Fibonacci.getFibonacci(fibIndex);
+			fibIndex++;
+		} while(fibCandidate < n);
+		
+		if (fibCandidate == n) {
+			return true;
+		}
 		return false; // Naturally, this will change.
 	}
 
