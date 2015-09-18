@@ -14,9 +14,28 @@ public class Fibonacci {
 	 * @return the n<sup>th</sup> Fibonacci number
 	 */
 	public static long getFibonacci(int n) {
-		// TODO: Implement this method
-		return -1; // This is a dummy return value. You will have to change
-					// this.
+		// Compute the Fibonacci Sequence from the bottom up.
+		long[] arrFibTriad = new long[3];
+		arrFibTriad[0] = 0; arrFibTriad[1] = 1;
+		/* Consider three numbers in the sequence at once.
+		 * Form the third number by adding the first two,
+		 * then shift all numbers down (move to the next
+		 * set of three numbers).
+		 */
+		for (int i = 1; i < n; i++) {
+			arrFibTriad[2] = arrFibTriad[0] + arrFibTriad[1];
+			arrFibTriad[0] = arrFibTriad[1];
+			arrFibTriad[1] = arrFibTriad[2];
+		}
+		
+		/* First Attempt: Compute the Fibonacci Sequence recursively.
+		 * if (n == 1) return 1;
+		 * else if (n == 0) return 0;
+		 * else return (getFibonacci(n-1)+getFibonacci(n-2));
+		 */
+		if (n == 0) return 0;
+		else if (n == 1) return 1;
+		return arrFibTriad[2]; // Return the nth Fibonacci number
 	}
 
 	/**
@@ -38,8 +57,10 @@ public class Fibonacci {
 			startTime = System.nanoTime();
 			fibN = getFibonacci(n);
 			endTime = System.nanoTime();
-			System.out.println("Fibonacci(" + n + ") is " + fibN + ", and the computation took " + (endTime - startTime)
-					+ " nanoseconds");
+			/*System.out.println("Fibonacci(" + n + ") is " + fibN + ", and the computation took " + (endTime - startTime)
+					+ " nanoseconds");*/
+			// A different print format that's easier to process but less readable.
+			System.out.println(n + "," + fibN + "," + (endTime - startTime));
 
 			// Note the use of the System.nanoTime() method. Find out more about
 			// this and related methods. These methods are built-in with Java.
