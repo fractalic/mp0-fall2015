@@ -3,9 +3,6 @@ package fibonacci1;
 import java.util.ArrayList;
 
 public class Fibonacci {
-	// Store all previously computed Fibonacci numbers.
-	static ArrayList<Long> arrFib;
-
 	/**
 	 * Return the n<sup>th</sup> Fibonacci number. The n<sup>th</sup> Fibonacci
 	 * number is defined as follows:<br />
@@ -19,12 +16,6 @@ public class Fibonacci {
 	 * @return the n<sup>th</sup> Fibonacci number
 	 */
 	public static long getFibonacci(int n) {
-		// The static approach		
-		for (int i = 1; i < n; i++) {
-			arrFib.add(arrFib.get(arrFib.size() - 1 ) + arrFib.get(arrFib.size() - 2));
-		}
-		
-		/* The triad approach
 		// Compute the Fibonacci Sequence from the bottom up.
 		long[] arrFibTriad = new long[3];
 		arrFibTriad[0] = 0; arrFibTriad[1] = 1;
@@ -32,21 +23,16 @@ public class Fibonacci {
 		 * Form the third number by adding the first two,
 		 * then shift all numbers down (move to the next
 		 * set of three numbers).
-		 *
+		 */
 		for (int i = 1; i < n; i++) {
 			arrFibTriad[2] = arrFibTriad[0] + arrFibTriad[1];
 			arrFibTriad[0] = arrFibTriad[1];
 			arrFibTriad[1] = arrFibTriad[2];
 		}
 		
-		 //First Attempt: Compute the Fibonacci Sequence recursively.
-//		if (n == 1) return 1;
-//		else if (n == 0) return 0;
-//		else return (getFibonacci(n-1)+getFibonacci(n-2));
-		 
 		if (n == 0) return 0;
 		else if (n == 1) return 1;
-		return arrFibTriad[2]; // Return the nth Fibonacci number */
+		return arrFibTriad[2]; // Return the nth Fibonacci number
 		return arrFib.get(n);
 	}
 
@@ -66,12 +52,7 @@ public class Fibonacci {
 		long fibN; // to hold a Fibonacci number
 		long startTime, endTime; // for timing the execution of the method
 		
-		// Set the initial values in the static fibonacci sequence
-		arrFib = new ArrayList<Long>(100);
-		arrFib.add((long)0);
-		arrFib.add((long)1);
-		
-		fibN = getFibonacci(0); // inital call to method to remove set up time.
+		fibN = getFibonacci(0); // initial call to method to remove set up time.
 		
 		for (int n = 0; n < M; ++n) {
 			startTime = System.nanoTime();
