@@ -68,7 +68,7 @@ There are two parts to submitting your work.
 ```git
 git add src/*
 git commit -m "MP0 submission"
-git push
+git push --set-upstream origin mp0
 ```
 
 * Note that the `git` commands in the previous step were provided as an example. You should get comfortable with using `git` as suitable.
